@@ -7,7 +7,7 @@
 Este projeto é uma reedição moderna de uma pérola da "Internet Raiz" dos anos 2000. Originalmente encontrado em CDs de utilitários e piadas da época, o software servia como um "teste definitivo" para diagnosticar a saúde mental do seu rebanho bovino.
 
 ## Live Demo
-Acesse agora o diagnóstico online: **[https://vaca-louca.jeiks.net](https://vaca-louca.jeiks.net)**
+Acesse agora o diagnóstico online: **[https://jeiks.net/vaca-louca](https://jeiks.net/vaca-louca)**
 
 ## A História
 O código original era um executável simples de Windows (com os clássicos menus *Arquivo* e *Ajuda*). Esta versão foi reconstruída do zero para a web, preservando os áudios e imagens originais, mas adicionando tecnologias modernas como **CSS Animations** e **I18n (Internacionalização)**.
