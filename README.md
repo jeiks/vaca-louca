@@ -34,6 +34,10 @@ O código original era um executável simples de Windows (com os clássicos menu
 ```
 
 ## Créditos & Nostalgia
+Esse é um Screenshot do aplicativo e dos crétidos do primeiro autor (_Alberto Iglesias_ -- não sei se é o nome real dele):
+
+![credits](credits.jpg)
+
 Digitalizado e mantido por **Jacson Rodrigues Correia da Silva**.
 
 * **LinkedIn:** [jacson-correia-silva](https://www.linkedin.com/in/jacson-correia-silva/)
