@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mad Cow Diagnostic</title>
+    <style>
+        /* [Mantendo o mesmo CSS anterior para não ficar gigante, mas adicionei o seletor de idioma abaixo] */
+        body { margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; background-color: #f0f2f5; font-family: 'Segoe UI', sans-serif; text-align: center; }
+        h1 { font-size: 1.6rem; margin-bottom: 40px; color: #1a2a3a; max-width: 700px; }
+        .container { display: flex; flex-direction: row; flex-wrap: wrap; gap: 30px; justify-content: center; width: 100%; }
+        .inside { display: flex; flex-direction: column; align-items: center; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 260px; transition: transform 0.3s ease; }
+        .vaca-img { width: 150px; height: 150px; object-fit: cover; border-radius: 15px; margin-bottom: 20px; border: 3px solid #eee; }
+        .btn-vaca { width: 100%; padding: 12px; border: none; border-radius: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; margin-bottom: 15px; transition: all 0.2s; text-transform: uppercase; }
+        .btn-boa { background-color: #27ae60; color: white; }
+        .btn-louca { background-color: #c0392b; color: white; }
+        .legenda { font-size: 0.95rem; line-height: 1.5; color: #555; min-height: 3em; }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .loucura-ativa { animation: shake 0.2s infinite; border-color: #e74c3c !important; }
+
+        /* Botão de troca manual (opcional) */
+        .lang-toggle { position: absolute; top: 10px; right: 10px; cursor: pointer; background: #ddd; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <button class="lang-toggle" onclick="toggleLanguage()">Switch to English / Mudar para PT</button>
+
+    <h1 id="main-title">Veja como identificar se a sua vaca está com a doença da Vaca Louca:</h1>
+
+    <div class="container">
+        <div class="inside">
+            <img src="boa.jpg" alt="Vaca Boa" class="vaca-img">
+            <button class="btn-vaca btn-boa" id="btn-boa" onclick="play('boa')">Vaca boa!</button>
+            <p class="legenda" id="leg-boa">Se o som ouvido for igual a este, pode acender o churrasco.</p>
+        </div>
+
+        <div class="inside">
+            <img src="louca.jpg" alt="Vaca Louca" class="vaca-img" id="img-louca">
+            <button class="btn-vaca btn-louca" id="btn-louca" onclick="play('louca')">Vaca louca!</button>
+            <p class="legenda" id="leg-louca">Se o som ouvido for igual a este, então sugiro você a comer Sushi.</p>
+        </div>
+    </div>
+
+    <script>
+        const texts = {
+            pt: {
+                title: "Veja como identificar se a sua vaca está com a doença da Vaca Louca:",
+                btnBoa: "Vaca boa!",
+                legBoa: "Se o som ouvido for igual a este, pode acender o churrasco.",
+                btnLouca: "Vaca louca!",
+                legLouca: "Se o som ouvido for igual a este, então sugiro você a comer Sushi."
+            },
+            en: {
+                title: "See how to identify if your cow has Mad Cow disease:",
+                btnBoa: "Good cow!",
+                legBoa: "If the sound you hear is like this one, you can start the BBQ.",
+                btnLouca: "Mad cow!",
+                legLouca: "If the sound you hear is like this one, then I suggest you eat Sushi."
+            }
+        };
+
+        let currentLang = navigator.language.startsWith('pt') ? 'pt' : 'en';
+
+        function updateUI() {
+            document.getElementById('main-title').innerText = texts[currentLang].title;
+            document.getElementById('btn-boa').innerText = texts[currentLang].btnBoa;
+            document.getElementById('leg-boa').innerText = texts[currentLang].legBoa;
+            document.getElementById('btn-louca').innerText = texts[currentLang].btnLouca;
+            document.getElementById('leg-louca').innerText = texts[currentLang].legLouca;
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'pt' ? 'en' : 'pt';
+            updateUI();
+        }
+
+        function play(qual) {
+            const imgLouca = document.getElementById('img-louca');
+            const audio = new Audio(qual === 'boa' ? 'boa.ogg' : 'louca.ogg');
+
+            if (qual === 'louca') {
+                imgLouca.classList.remove('loucura-ativa');
+                setTimeout(() => imgLouca.classList.add('loucura-ativa'), 1800);
+                audio.onended = () => imgLouca.classList.remove('loucura-ativa');
+            }
+            audio.play();
+        }
+
+        // Inicializa a tradução ao carregar
+        updateUI();
+    </script>
+</body>
+</html>
